@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+    <project name = "UrlShort" basedir = ".">
+
+        <property name = "src" location = "src"/>
+        <property name = "build" location = "build"/> <!--тут будут результаты компиляции-->
+        <property name="dist" location="dist"/>
+
+
+        <target name="compile">
+            <javac includeantruntime="false" srcdir = "${src}" destdir = "${build}" source = "1.8" target = "1.8"/>
+        </target>
+
+        <target name="dist" depends="compile">
+            <jar destfile = "${dist}/UrlShort.jar">
+                <fileset dir = "${build}"/>
+                <manifest>
+                    <attribute name="Main-Class" value = "Main"/>
+                </manifest>
+            </jar>
+        </target>
+
+
+    </project>
