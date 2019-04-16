@@ -36,9 +36,7 @@ public class Main {
             String sUrl = sc.next();
             System.out.println("This is your long URL:");
             shortUrl.decode(sUrl);
-            if (shortUrl.equals(null)){
-                System.out.println("There isn't such URL");
-            }
+
 
         } else {
             System.out.println("This URL is not correct");
