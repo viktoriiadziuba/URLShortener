@@ -1,13 +1,12 @@
 package com.company;
 
-import com.sun.istack.internal.Nullable;
-
-import javax.imageio.IIOException;
 import java.io.*;
 
 public class URLDecoder {
 
-    File file = new File("/home/vikad/URL.txt");
+    String homeDirectory = System.getProperty("user.home");
+
+    File file = new File(homeDirectory + "/URL.txt");
 
     // Decodes a shortened URL to its original URL.
     public void decode(String shortUrl) {
@@ -26,9 +25,6 @@ public class URLDecoder {
         } catch (FileNotFoundException e) {
             System.out.println("File isn't exists, please create a new one");
             System.out.println("Check the directory and name: " + file.toString());
-
-        } catch (IIOException ex) {
-            System.out.println("Can't read from file");
 
         } catch (IOException exception){
             exception.printStackTrace();

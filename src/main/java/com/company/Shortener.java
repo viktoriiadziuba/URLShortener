@@ -12,7 +12,8 @@ public class Shortener {
     HashMap<String, String> urlMap = new HashMap();
     String urlPrefix = "www.yourShortUrl.com/";
     String randChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-    File file = new File("/home/vikad/URL.txt");
+    String homeDirectory = System.getProperty("user.home");
+    File file = new File(homeDirectory + "/URL.txt");
 
 
     // Encodes a URL to a shortened URL with chars from variable randChars above.
@@ -43,6 +44,7 @@ public class Shortener {
                 writer.newLine();
 
             } catch (IOException e){
+                System.out.println("Something wrong with your file");
                 e.printStackTrace();
             }
         }
