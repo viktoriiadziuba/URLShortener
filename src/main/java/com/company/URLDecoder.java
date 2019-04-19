@@ -21,13 +21,15 @@ public class URLDecoder {
                     String longUrl = str1;
                     System.out.println(longUrl);
                 }
+
+
             }
         } catch (FileNotFoundException e) {
             System.out.println("File isn't exists, please create a new one");
             System.out.println("Check the directory and name: " + file.toString());
 
         } catch (IOException exception){
-            exception.printStackTrace();
+            System.err.println("Something wrong with your file: " + exception.getMessage());
         }
     }
 }

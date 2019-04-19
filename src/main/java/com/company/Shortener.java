@@ -44,8 +44,7 @@ public class Shortener {
                 writer.newLine();
 
             } catch (IOException e){
-                System.out.println("Something wrong with your file");
-                e.printStackTrace();
+                System.err.println("Something wrong with your file: " + e.getMessage());
             }
         }
     }
