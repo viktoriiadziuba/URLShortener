@@ -59,30 +59,19 @@
                 </configuration>
             </plugin>
 
-            <!-- If you made a GUI in IntelliJ, this maven plugin compiles it.
-            So if your program is console-only, this'll do nothing. You can delete it if you want.
-            http://stackoverflow.com/questions/19049253/intelij-idea-gui-designer-maven -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>ideauidesigner-maven-plugin</artifactId>
-                <version>1.0-beta-1</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>javac2</goal>
-                        </goals>
-                    </execution>
-                </executions>
-
-                <configuration>
-                    <fork>true</fork>
-                    <debug>true</debug>
-                    <failOnError>true</failOnError>
-                </configuration>
-            </plugin>
 
         </plugins>
+
     </build>
+
+    <dependencies>
+        <!-- https://mvnrepository.com/artifact/log4j/log4j -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+    </dependencies>
 
 
 </project>
