@@ -1,38 +1,38 @@
 package com.company;
-
+import com.google.common.hash.Hashing;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Random;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Shortener {
+    private static final Logger log = LoggerFactory.getLogger(Shortener.class);
 
     HashMap<String, String> urlMap = new HashMap();
     String urlPrefix = "www.yourShortUrl.com/";
-    String randChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
     String homeDirectory = System.getProperty("user.home");
     File file = new File(homeDirectory + "/URL.txt");
 
 
     // Encodes a URL to a shortened URL with chars from variable randChars above.
     public String encode(String longUrl) {
-        Random rand = new Random();
-        int urlLen = 6;
-        char[] shortURL = new char[urlLen];
 
-        for (int i = 0; i < urlLen; i++)
-            shortURL[i] = randChars.charAt(rand.nextInt(randChars.length()));
+       String shortURL = Hashing.sha256().hashString(longUrl, StandardCharsets.UTF_8).toString();
 
+       log.info(shortURL);
         StringBuilder sb = new StringBuilder(urlPrefix);
-        sb.append(new String(shortURL));
+        sb.append(shortURL);
         System.out.println(sb);
 
         urlMap.put(sb.toString()+" "," " + longUrl);
 
-        return sb.toString();
+        return shortURL;
     }
+
 
     public void fillFile ()  {
         Iterator i = urlMap.entrySet().iterator();
@@ -49,4 +49,8 @@ public class Shortener {
         }
     }
 
-    }
+
+
+
+
+}
