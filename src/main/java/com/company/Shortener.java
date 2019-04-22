@@ -6,11 +6,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class Shortener {
-    private static final Logger log = LoggerFactory.getLogger(Shortener.class);
 
     HashMap<String, String> urlMap = new HashMap();
     String urlPrefix = "www.yourShortUrl.com/";
@@ -23,8 +20,7 @@ public class Shortener {
 
        String shortURL = Hashing.sha256().hashString(longUrl, StandardCharsets.UTF_8).toString();
 
-       log.info(shortURL);
-        StringBuilder sb = new StringBuilder(urlPrefix);
+       StringBuilder sb = new StringBuilder(urlPrefix);
         sb.append(shortURL);
         System.out.println(sb);
 
