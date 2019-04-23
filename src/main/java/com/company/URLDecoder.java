@@ -9,11 +9,13 @@ import com.google.common.io.Files;
 
 public class URLDecoder {
 
+
     String homeDirectory = System.getProperty("user.home");
     File file = new File(homeDirectory + "/URL.txt");
     List<String> urls = Lists.newArrayList();
 
     public URLDecoder() {
+
         readFromFile();
     }
 
