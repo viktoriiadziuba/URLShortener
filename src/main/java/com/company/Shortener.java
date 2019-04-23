@@ -16,9 +16,7 @@ public class Shortener {
     File file = new File(homeDirectory + "/URL.txt");
 
 
-    // Encodes a URL to a shortened URL with chars from variable randChars above.
     public String encode(String longUrl) {
-
         String shortURL = Hashing.sha256().hashString(longUrl, StandardCharsets.UTF_8).toString();
 
         return shortURL;

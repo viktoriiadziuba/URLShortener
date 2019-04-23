@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ObjectInputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,26 +15,23 @@ import static org.junit.Assert.*;
 
 public class ShortenerTest {
 
-  //  HashMap<String, String> urlMap = new HashMap();
-    String urlPrefix = "www.yourShortUrl.com/";
-    Shortener s = new Shortener();
-
 
     @Test
     public void shouldEncode() {
-        String longUrl = "https://javarush.ru/groups/posts/605-junit";
-        s.encode(longUrl);
+        //URL which should be encoded
+        String s = "http://tutorials.jenkov.com/java-unit-testing/asserts.html";
 
-        String shortURL = Hashing.sha256().hashString(longUrl, StandardCharsets.UTF_8).toString();
+        //The result of encoding with encode() method in class Shortener
+        String s1 = "ad10cc74973e41748542c471c76213b82cdd99b2df81367a3391dc5ff4f48adb";
 
-        StringBuilder sb = new StringBuilder(urlPrefix);
-        sb.append(shortURL).toString();
-        //System.out.println(sb);
-        //System.out.println(s);
+         String result = Hashing.sha256().hashString(s, StandardCharsets.UTF_8).toString();
 
+         Assert.assertEquals(s1, result);
 
-            Assert.assertEquals(s, sb);
+    }
 
+    @Test
+    public void shouldFillMap(){
 
     }
 
