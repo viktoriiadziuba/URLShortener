@@ -1,43 +1,46 @@
 package com.company;
 
+import java.io.*;
+import java.util.Iterator;
+import java.util.Map;
 import java.util.Scanner;
-
 
 public class Main {
 
     public static void main(String[] args) {
 
-        Shortener shortUrl = new Shortener();
-        URLDecoder longUrl = new URLDecoder();
+        System.out.println("Enter your long URL:");
         Scanner sc = new Scanner(System.in);
+        String lUrl = sc.next();
+        if(URLValidator.urlValidator(lUrl)) {
 
-        System.out.println("Please choose what you would like to do with your URL:");
-        System.out.println("In case if you want to make your URL shorter, please enter 1");
-        System.out.println("In case if you want to get your original URL by its short version, please enter 2");
-        System.out.println("Please enter your choice:");
-        int choice = sc.nextInt();
+            Shortener shortUrl = new Shortener();
+            System.out.println("This is your short URL:");
+            shortUrl.encode(lUrl);
+            Iterator i = shortUrl.urlMap.entrySet().iterator();
 
-        switch (choice) {
-            case 1:
-                System.out.println("Enter your long URL:");
-                String lUrl = sc.next();
-                if(URLValidator.urlValidator(lUrl)) {
-                    System.out.println("This is your short URL:");
-                    shortUrl.encode(lUrl);
-                    shortUrl.fillFile();
-                    } else {
-                    System.out.println("This URL is not correct");
+            while (i.hasNext()) {
+                Map.Entry pairs = (Map.Entry) i.next();
+            try {
+                    BufferedWriter writer = new BufferedWriter(new FileWriter("URL.txt", true));
+                    writer.write(pairs.toString());
+                    writer.newLine();
+                    writer.close();
+                } catch(IOException e){
+                    e.printStackTrace();
                 }
-            break;
 
-            case 2:
-                System.out.println("Enter you short URL");
-                String sUrl = sc.next();
-                System.out.println("This is your long URL:");
-                longUrl.decode(sUrl);
-            break;
+            }
+//
+            System.out.println("Enter you short URL");
+            String sUrl = sc.next();
+            System.out.println("This is your long URL:");
+            shortUrl.decode(sUrl);
+
+
+        } else {
+            System.out.println("This URL is not correct");
         }
-
 
     }
 }
