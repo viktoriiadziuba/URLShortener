@@ -1,60 +1,50 @@
 package com.company;
 
+import com.google.common.hash.Hashing;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
-import java.util.Random;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Shortener {
 
     HashMap<String, String> urlMap = new HashMap();
+    String urlPrefix = "www.yourShortUrl.com/";
+    String homeDirectory = System.getProperty("user.home");
+    File file = new File(homeDirectory + "/URL.txt");
 
-    // Encodes a URL to a shortened URL.
+
+    // Encodes a URL to a shortened URL with chars from variable randChars above.
     public String encode(String longUrl) {
-        Random rand = new Random();
-        int urlLen = 6;
-        char[] shortURL = new char[urlLen];
-        String randChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
 
-        for (int i = 0; i < urlLen; i++)
-            shortURL[i] = randChars.charAt(rand.nextInt(randChars.length()));
+        String shortURL = Hashing.sha256().hashString(longUrl, StandardCharsets.UTF_8).toString();
 
-        StringBuilder sb = new StringBuilder("www.yourShortUrl.com/");
-        sb.append(new String(shortURL));
+        return shortURL;
+    }
+
+    public void fillMap(String longUrl){
+        StringBuilder sb = new StringBuilder(urlPrefix);
+        sb.append(encode(longUrl));
         System.out.println(sb);
-
         urlMap.put(sb.toString()+" "," " + longUrl);
 
-        return sb.toString();
     }
 
 
+    public void fillFile ()  {
+        Iterator i = urlMap.entrySet().iterator();
 
-    // Decodes a shortened URL to its original URL.
-    public void decode(String shortUrl) {
-        try {
-            BufferedReader br = new BufferedReader(new FileReader("URL.txt"));
-            String s;
-            while ((s = br.readLine()) != null) {
-                String str = s.split(" = ", 2)[0];
-                String str1 = s.split(" = ", 2)[1];
+        while (i.hasNext()) {
+            Map.Entry pairs = (Map.Entry) i.next();
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+                writer.write(pairs.toString());
+                writer.newLine();
 
-                if (shortUrl.equals(str)) {
-                    String longUrl = str1;
-                    System.out.println(longUrl);
-                }
-
+            } catch (IOException e){
+                System.err.println("Something wrong with your file: " + e.getMessage());
             }
-
-
-
-            br.close();
-        } catch(IOException e){
-            e.printStackTrace();
+        }
     }
-
-    }
-
 }
