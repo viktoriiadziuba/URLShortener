@@ -23,7 +23,6 @@ public class Main {
                     Thread.sleep(200);
                     shortUrl.fillFile();
                     log.warn("Your app is stopped");
-                   // System.out.println(" " + "Your app is stopped");
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
