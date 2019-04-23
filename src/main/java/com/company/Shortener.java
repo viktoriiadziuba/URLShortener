@@ -1,5 +1,4 @@
 package com.company;
-
 import com.google.common.hash.Hashing;
 
 import java.io.*;
@@ -18,7 +17,6 @@ public class Shortener {
 
     // Encodes a URL to a shortened URL with chars from variable randChars above.
     public String encode(String longUrl) {
-
         String shortURL = Hashing.sha256().hashString(longUrl, StandardCharsets.UTF_8).toString();
 
         return shortURL;
@@ -27,9 +25,9 @@ public class Shortener {
     public void fillMap(String longUrl){
         StringBuilder sb = new StringBuilder(urlPrefix);
         sb.append(encode(longUrl));
+    
         System.out.println(sb);
         urlMap.put(sb.toString()+" "," " + longUrl);
-
     }
 
 

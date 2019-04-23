@@ -9,13 +9,14 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static final Logger log = LoggerFactory.getLogger(Main.class);
+   private static final Logger log = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)  {
 
         Shortener shortUrl = new Shortener();
         URLDecoder longUrl = new URLDecoder();
         Scanner sc = new Scanner(System.in);
+        String b = "";
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
@@ -47,6 +48,7 @@ public class Main {
                             log.info("This is your short URL:");
                             shortUrl.encode(lUrl);
                             shortUrl.fillMap(lUrl);
+
                         } else {
                             log.info("This URL is not correct");
                         }

@@ -10,12 +10,11 @@ import com.google.common.io.Files;
 public class URLDecoder {
 
     String homeDirectory = System.getProperty("user.home");
-    File file = new File(homeDirectory + "/URL.txt");
-    List<String> urls = Lists.newArrayList();
 
     public URLDecoder() {
         readFromFile();
     }
+
 
     public void readFromFile() {
         if (file.isFile()) {
@@ -23,9 +22,11 @@ public class URLDecoder {
                 urls = Files.readLines(file, Charsets.UTF_8);
             } catch (IOException e) {
                 e.printStackTrace();
+  
             }
         }
     }
+
 
 
     // Decodes a shortened URL to its original URL.
@@ -35,6 +36,7 @@ public class URLDecoder {
             if (shortUrl.equals(str)) {
                 System.out.println(urls.get(i).split(" = ", 2)[1]);
             }
+
         }
 
     }
