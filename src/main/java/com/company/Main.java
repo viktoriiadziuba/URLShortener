@@ -57,6 +57,7 @@ public class Main {
                         String sUrl = sc.next();
                         log.info("This is your long URL:");
                         longUrl.decode(sUrl);
+                        longUrl.output(sUrl);
                         break;
 
                     default:

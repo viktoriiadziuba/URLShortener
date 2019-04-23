@@ -10,6 +10,7 @@ import java.util.Map;
 
 public class Shortener {
 
+
     HashMap<String, String> urlMap = new HashMap();
     String urlPrefix = "www.yourShortUrl.com/";
     String homeDirectory = System.getProperty("user.home");

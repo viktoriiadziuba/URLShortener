@@ -29,14 +29,23 @@ public class URLDecoder {
 
 
     // Decodes a shortened URL to its original URL.
-    public void decode(String shortUrl) {
+    public String decode(String shortUrl) {
+        for (int i = 0; i < urls.size(); i++) {
+            shortUrl = urls.get(i).split(" = ", 2)[1];
+        }
+        return shortUrl;
+    }
+
+    public void output(String shortUrl){
         for (int i = 0; i < urls.size(); i++) {
             String str = urls.get(i).split(" = ", 2)[0];
+            String str1 = urls.get(i).split(" = ", 2)[1];
             if (shortUrl.equals(str)) {
-                System.out.println(urls.get(i).split(" = ", 2)[1]);
+                System.out.println(str1);
             }
         }
 
     }
+
 }
 
