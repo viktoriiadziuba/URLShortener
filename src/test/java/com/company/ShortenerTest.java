@@ -49,9 +49,4 @@ public class ShortenerTest {
         Assert.assertArrayEquals(array, array1);
     }
 
-    @Test
-    public void shouldFillFile() {
-
-
-    }
 }
