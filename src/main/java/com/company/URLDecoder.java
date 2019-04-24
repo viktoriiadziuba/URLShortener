@@ -32,16 +32,17 @@ public class URLDecoder {
 
     // Decodes a shortened URL to its original URL.
     public String decode(String shortUrl) {
+        String s = "There isn't such URL";
         for (int i = 0; i < urls.size(); i++) {
-            if(urls.contains(shortUrl)) {
-                shortUrl = urls.get(i).split(" = ", 2)[1];
-            } else {
-                shortUrl = "There isn't such URL";
+            String str = urls.get(i).split(" = ", 2)[0];
+            if (shortUrl.equals(str)) {
+                s = urls.get(i).split(" = ", 2)[1];
             }
         }
-        return shortUrl;
+        return s;
     }
 
 
 }
+
 

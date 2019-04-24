@@ -22,8 +22,6 @@ public class ShortenerTest {
 
     @Test
     public void shouldEncode() {
-        //Shortener sh = new Shortener();
-        //URL which should be encoded
         String s = "http://tutorials.jenkov.com/java-unit-testing/asserts.html";
         String s1 = sh.encode(s);
 
@@ -41,12 +39,12 @@ public class ShortenerTest {
         StringBuilder sb = new StringBuilder(urlPrefix);
         sb.append(sh.encode(longUrl));
         urlMap1.put(sb.toString()+" "," " + longUrl);
-        Object[] array = urlMap1.entrySet().toArray();
 
+        HashMap<String, String> urlMap2;
         sh.fillMap(longUrl);
-        Object[] array1 = sh.urlMap.entrySet().toArray();
+        urlMap2 = sh.urlMap;
 
-        Assert.assertArrayEquals(array, array1);
+        Assert.assertEquals(urlMap1, urlMap2);
     }
 
 }
