@@ -27,9 +27,14 @@ public class Shortener {
     public void fillMap(String longUrl){
         StringBuilder sb = new StringBuilder(urlPrefix);
         sb.append(encode(longUrl));
-        System.out.println(sb);
         urlMap.put(sb.toString()+" "," " + longUrl);
 
+    }
+
+    public String printShortUrl(String lUrl){
+        StringBuilder sb = new StringBuilder(urlPrefix);
+        sb.append(encode(lUrl));
+        return sb.toString();
     }
 
 

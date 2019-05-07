@@ -45,12 +45,12 @@ public class Main {
                         log.info("Enter your long URL:");
                         String lUrl = sc.next();
                         if (URLValidator.urlValidator(lUrl)) {
-                            if(!mapUrls.containsValue(lUrl)) {
-                                log.info("This is your short URL:");
+                            log.info("This is your short URL:");
+                                if(mapUrls.containsValue(lUrl)) {
+                                log.info(shortUrl.printShortUrl(lUrl));
+                            } else {
                                 shortUrl.encode(lUrl);
                                 shortUrl.fillMap(lUrl);
-                            } else {
-                                log.info("This URL already exists");
                             }
                         } else {
                             log.info("This URL is not correct");
