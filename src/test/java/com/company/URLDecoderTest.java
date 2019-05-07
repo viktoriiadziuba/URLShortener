@@ -9,10 +9,13 @@ public class URLDecoderTest {
 
    @Test
     public void shouldDecode(){
-       String shortUrl = "www.yourShortUrl.com/f9ab1e0018c9987732d9ee858596352c237520878115eb003d942b75e17b67a6";
+       String shortUrl = "www.yourShortUrl.com/299e6e3ed324c3280fcfd38513025cfd8b396f470b08dacfd0a30b6fa1b95a2f";
        String str = null;
        for (int i = 0; i < urlD.urls.size(); i++) {
-           str = urlD.urls.get(i).split(" = ", 2)[1];
+           String s = urlD.urls.get(i).split(" = ", 2)[0];
+           if (shortUrl.equals(s)) {
+               str = urlD.urls.get(i).split(" = ", 2)[1];
+           }
        }
 
        String str1 = urlD.decode(shortUrl);

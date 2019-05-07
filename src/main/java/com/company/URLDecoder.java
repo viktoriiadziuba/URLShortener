@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.List;
 
 import com.google.common.base.Charsets;
@@ -19,14 +20,23 @@ public class URLDecoder {
         readFromFile();
     }
 
-    public void readFromFile() {
+    public HashMap<String, String> readFromFile() {
+        HashMap<String, String> mapFile = new HashMap<>();
         if (file.isFile()) {
             try {
                 urls = Files.readLines(file, Charsets.UTF_8);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+            for (int i = 0; i < urls.size(); i++) {
+                String str = urls.get(i).split(" = ", 2)[0];
+                String str1 = urls.get(i).split(" = ", 2)[1];
+                mapFile.put(str, str1);
+            }
+
         }
+        return mapFile;
     }
 
 

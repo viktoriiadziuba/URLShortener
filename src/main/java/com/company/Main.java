@@ -3,19 +3,19 @@ package com.company;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     private static final Logger log = LoggerFactory.getLogger(Main.class);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         Shortener shortUrl = new Shortener();
         URLDecoder longUrl = new URLDecoder();
         Scanner sc = new Scanner(System.in);
+        HashMap<String, String> mapUrls = longUrl.readFromFile();
+
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
@@ -28,6 +28,7 @@ public class Main {
                 }
             }
         });
+
 
         while (true) {
 
@@ -45,8 +46,13 @@ public class Main {
                         String lUrl = sc.next();
                         if (URLValidator.urlValidator(lUrl)) {
                             log.info("This is your short URL:");
-                            shortUrl.encode(lUrl);
-                            shortUrl.fillMap(lUrl);
+                                if(mapUrls.containsValue(lUrl)) {
+                                log.info(shortUrl.printShortUrl(lUrl));
+                            } else {
+                                shortUrl.encode(lUrl);
+                                shortUrl.fillMap(lUrl);
+                                log.info(shortUrl.printShortUrl(lUrl));
+                            }
                         } else {
                             log.info("This URL is not correct");
                         }
