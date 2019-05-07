@@ -51,6 +51,7 @@ public class Main {
                             } else {
                                 shortUrl.encode(lUrl);
                                 shortUrl.fillMap(lUrl);
+                                log.info(shortUrl.printShortUrl(lUrl));
                             }
                         } else {
                             log.info("This URL is not correct");

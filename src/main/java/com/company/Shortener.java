@@ -15,7 +15,6 @@ public class Shortener {
     String urlPrefix = "www.yourShortUrl.com/";
     String homeDirectory = System.getProperty("user.home");
     File file = new File(homeDirectory + "/URL.txt");
-    URLDecoder decoder = new URLDecoder();
 
 
     public String encode(String longUrl) {
