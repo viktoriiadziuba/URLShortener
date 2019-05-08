@@ -13,7 +13,7 @@ Secondly, create a JAR file by command: jar -cfve URLShortener.jar com.company.M
 -e, --main-class=CLASSNAME  The application entry point for stand-alone
                              applications bundled into a modular, or executable,
                              jar archive
-URLShortener.jar - nane of the future JAR
+URLShortener.jar - name of the future JAR
 com.company.Main - pass to the main class
 -C - To change directories during execution of the command. See below for an example.
 bin/ - name if the directory
