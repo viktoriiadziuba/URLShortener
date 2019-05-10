@@ -4,19 +4,20 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
 public class FileFiller {
 
-    private String homeDirectory = System.getProperty("user.home");
-    private File file = new File(homeDirectory + "/URL.txt");
-    public static HashMap<String, String> urlMap = new HashMap();
+    private File file;
+    MapFiller mapFiller = new MapFiller();
 
+    public FileFiller(File file){
+        this.file = file;
+    }
 
     public void fillFile ()  {
-        Iterator i = urlMap.entrySet().iterator();
+        Iterator i = mapFiller.urlMap.entrySet().iterator();
 
         while (i.hasNext()) {
             Map.Entry pairs = (Map.Entry) i.next();

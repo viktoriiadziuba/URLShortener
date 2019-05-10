@@ -3,6 +3,7 @@ package com.company;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.util.*;
 
 public class Main {
@@ -13,10 +14,14 @@ public class Main {
 
         URLDecoder longUrl = new URLDecoder();
         MapFiller mapFiller = new MapFiller();
-        FileFiller filler = new FileFiller();
-        FileReader reader = new FileReader();
+        String homeDirectory = System.getProperty("user.home");
+        FileFiller filler = new FileFiller(new File(homeDirectory + "/URL.txt"));
+        FileReader reader = new FileReader(new File(homeDirectory + "/URL.txt"));
         Scanner sc = new Scanner(System.in);
+        ShortUrlOutput output = new ShortUrlOutput();
         HashMap<String, String> mapUrls = reader.readFromFile();
+
+
 
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
@@ -49,11 +54,11 @@ public class Main {
                         if (URLValidator.urlValidator(lUrl)) {
                             log.info("This is your short URL:");
                                 if(mapUrls.containsValue(lUrl)) {
-                                log.info(mapFiller.printShortUrl(lUrl));
+                                log.info(output.printShortUrl(lUrl));
                             } else {
                                 mapFiller.encode(lUrl);
                                 mapFiller.fillMap(lUrl);
-                                log.info(mapFiller.printShortUrl(lUrl));
+                                log.info(output.printShortUrl(lUrl));
                             }
                         } else {
                             log.info("This URL is not correct");

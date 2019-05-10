@@ -3,10 +3,12 @@ package com.company;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.File;
+
 public class URLDecoderTest {
 
     URLDecoder urlD = new URLDecoder();
-    FileReader fileReader = new FileReader();
+    FileReader fileReader = new FileReader(new File(System.getProperty("user.home") + "/URL.txt"));
 
 
     @Test

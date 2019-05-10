@@ -1,8 +1,10 @@
 package com.company;
 
-public class URLDecoder implements IDecoder {
+import java.io.File;
 
-    FileReader fileReader = new FileReader();
+public class URLDecoder implements Decoder {
+
+    FileReader fileReader = new FileReader(new File(System.getProperty("user.home") + "/URL.txt"));
 
     // Decodes a shortened URL to its original URL.
     @Override

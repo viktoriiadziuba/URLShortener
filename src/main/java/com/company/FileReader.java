@@ -11,11 +11,11 @@ import java.util.List;
 
 public class FileReader {
 
-    private String homeDirectory = System.getProperty("user.home");
-    private File file = new File(homeDirectory + "/URL.txt");
+    private File file;
     public static List<String> urls = Lists.newArrayList();
 
-    public FileReader(){
+    public FileReader(File file){
+        this.file = file;
         readFromFile();
     }
 
