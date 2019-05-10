@@ -31,20 +31,4 @@ public class ShortenerTest {
 
     }
 
-    @Test
-    public void shouldFillMap(){
-        HashMap<String, String> urlMap1 = new HashMap();
-        String urlPrefix = "www.yourShortUrl.com/";
-        String longUrl = "http://tutorials.jenkov.com/java-unit-testing/asserts.html";
-        StringBuilder sb = new StringBuilder(urlPrefix);
-        sb.append(sh.encode(longUrl));
-        urlMap1.put(sb.toString()+" "," " + longUrl);
-
-        HashMap<String, String> urlMap2;
-        sh.fillMap(longUrl);
-        urlMap2 = sh.urlMap;
-
-        Assert.assertEquals(urlMap1, urlMap2);
-    }
-
 }

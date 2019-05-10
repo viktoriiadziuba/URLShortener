@@ -11,17 +11,19 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Shortener shortUrl = new Shortener();
         URLDecoder longUrl = new URLDecoder();
+        MapFiller mapFiller = new MapFiller();
+        FileFiller filler = new FileFiller();
+        FileReader reader = new FileReader();
         Scanner sc = new Scanner(System.in);
-        HashMap<String, String> mapUrls = longUrl.readFromFile();
+        HashMap<String, String> mapUrls = reader.readFromFile();
 
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
                 try {
                     Thread.sleep(200);
-                    shortUrl.fillFile();
+                    filler.fillFile();
                     log.warn("Your app is stopped");
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
@@ -47,11 +49,11 @@ public class Main {
                         if (URLValidator.urlValidator(lUrl)) {
                             log.info("This is your short URL:");
                                 if(mapUrls.containsValue(lUrl)) {
-                                log.info(shortUrl.printShortUrl(lUrl));
+                                log.info(mapFiller.printShortUrl(lUrl));
                             } else {
-                                shortUrl.encode(lUrl);
-                                shortUrl.fillMap(lUrl);
-                                log.info(shortUrl.printShortUrl(lUrl));
+                                mapFiller.encode(lUrl);
+                                mapFiller.fillMap(lUrl);
+                                log.info(mapFiller.printShortUrl(lUrl));
                             }
                         } else {
                             log.info("This URL is not correct");
