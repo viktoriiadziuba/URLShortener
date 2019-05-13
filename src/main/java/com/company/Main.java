@@ -3,6 +3,7 @@ package com.company;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.util.*;
 
 public class Main {
@@ -11,24 +12,24 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Shortener shortUrl = new Shortener();
-        URLDecoder longUrl = new URLDecoder();
+        URLModification urlModification = new URLModification();
+        Storage storage = new Storage("www.yourShortUrl.com/");
+        String homeDirectory = System.getProperty("user.home");
+        FileOperation fileOperation = new FileOperation(new File(homeDirectory + "/URL.txt"), storage);
         Scanner sc = new Scanner(System.in);
-        HashMap<String, String> mapUrls = longUrl.readFromFile();
-
+        HashMap<String, String> mapUrls = fileOperation.readFromFile();
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
                 try {
                     Thread.sleep(200);
-                    shortUrl.fillFile();
+                    fileOperation.fillFile();
                     log.warn("Your app is stopped");
                 } catch (InterruptedException ex) {
-                    ex.printStackTrace();
+                    log.warn("Your applications was interrupted");
                 }
             }
         });
-
 
         while (true) {
 
@@ -47,12 +48,13 @@ public class Main {
                         if (URLValidator.urlValidator(lUrl)) {
                             log.info("This is your short URL:");
                                 if(mapUrls.containsValue(lUrl)) {
-                                log.info(shortUrl.printShortUrl(lUrl));
-                            } else {
-                                shortUrl.encode(lUrl);
-                                shortUrl.fillMap(lUrl);
-                                log.info(shortUrl.printShortUrl(lUrl));
-                            }
+                                    StringBuilder sb = new StringBuilder("www.yourShortUrl.com/");
+                                    log.info(sb.append(urlModification.encode(lUrl)).toString());
+                                } else {
+                                urlModification.encode(lUrl);
+                                storage.fillMap(lUrl);
+                                StringBuilder sb = new StringBuilder("www.yourShortUrl.com/");
+                                log.info(sb.append(urlModification.encode(lUrl)).toString());                            }
                         } else {
                             log.info("This URL is not correct");
                         }
@@ -62,13 +64,12 @@ public class Main {
                         log.info("Enter you short URL");
                         String sUrl = sc.next();
                         log.info("This is your long URL:");
-                        longUrl.decode(sUrl);
-                        log.info(longUrl.decode(sUrl));
+                        urlModification.decode(sUrl);
+                        log.info(urlModification.decode(sUrl));
                         break;
 
                     default:
                         log.info("Please enter one number from 1 to 3");
-
                 }
 
 
@@ -77,10 +78,6 @@ public class Main {
                 break;
             }
         }
-
-
     }
-
-
 }
 
