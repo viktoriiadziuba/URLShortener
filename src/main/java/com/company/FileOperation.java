@@ -4,19 +4,39 @@ import com.google.common.base.Charsets;
 import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
-public class FileReader {
+public class FileOperation {
 
     private File file;
+    Storage storage = new Storage("www.yourShortUrl.com/");
     public static List<String> urls = Lists.newArrayList();
 
-    public FileReader(File file){
+    public FileOperation(File file){
         this.file = file;
         readFromFile();
+    }
+
+    public void fillFile ()  {
+        Iterator i = storage.urlMap.entrySet().iterator();
+
+        while (i.hasNext()) {
+            Map.Entry pairs = (Map.Entry) i.next();
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))) {
+                writer.write(pairs.toString());
+                writer.newLine();
+
+            } catch (IOException e){
+                System.err.println("Something wrong with your file: " + e.getMessage());
+            }
+        }
     }
 
     public HashMap<String, String> readFromFile() {
