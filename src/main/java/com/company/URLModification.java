@@ -5,7 +5,7 @@ import com.google.common.hash.Hashing;
 import java.io.File;
 import java.nio.charset.StandardCharsets;
 
-public class URLModification implements Encoder, Decoder{
+public class URLModification implements Encoder, Decoder {
 
     FileOperation fileReader = new FileOperation(new File(System.getProperty("user.home") + "/URL.txt"));
 

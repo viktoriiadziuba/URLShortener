@@ -13,12 +13,11 @@ public class Main {
     public static void main(String[] args) {
 
         URLModification urlModification = new URLModification();
-        Storage storage = new Storage("www.yourShortUrl.com/");
+        Storage storage = new Storage();
         String homeDirectory = System.getProperty("user.home");
         FileOperation fileOperation = new FileOperation(new File(homeDirectory + "/URL.txt"));
         Scanner sc = new Scanner(System.in);
         HashMap<String, String> mapUrls = fileOperation.readFromFile();
-
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {
@@ -27,11 +26,10 @@ public class Main {
                     fileOperation.fillFile();
                     log.warn("Your app is stopped");
                 } catch (InterruptedException ex) {
-                    ex.printStackTrace();
+                    log.warn("Your applications was interrupted");
                 }
             }
         });
-
 
         while (true) {
 
@@ -52,7 +50,7 @@ public class Main {
                                 if(mapUrls.containsValue(lUrl)) {
                                     StringBuilder sb = new StringBuilder("www.yourShortUrl.com/");
                                     log.info(sb.append(urlModification.encode(lUrl)).toString());
-                            } else {
+                                } else {
                                 urlModification.encode(lUrl);
                                 storage.fillMap(lUrl);
                                 StringBuilder sb = new StringBuilder("www.yourShortUrl.com/");
@@ -72,7 +70,6 @@ public class Main {
 
                     default:
                         log.info("Please enter one number from 1 to 3");
-
                 }
 
 
@@ -81,10 +78,6 @@ public class Main {
                 break;
             }
         }
-
-
     }
-
-
 }
 

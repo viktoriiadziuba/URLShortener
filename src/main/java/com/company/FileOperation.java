@@ -16,15 +16,15 @@ import java.util.Map;
 public class FileOperation {
 
     private File file;
-    Storage storage = new Storage("www.yourShortUrl.com/");
+    Storage storage = new Storage();
     public static List<String> urls = Lists.newArrayList();
 
-    public FileOperation(File file){
+    public FileOperation(File file) {
         this.file = file;
         readFromFile();
     }
 
-    public void fillFile ()  {
+    public void fillFile () {
         Iterator i = storage.urlMap.entrySet().iterator();
 
         while (i.hasNext()) {
@@ -33,7 +33,7 @@ public class FileOperation {
                 writer.write(pairs.toString());
                 writer.newLine();
 
-            } catch (IOException e){
+            } catch (IOException e) {
                 System.err.println("Something wrong with your file: " + e.getMessage());
             }
         }
@@ -53,7 +53,6 @@ public class FileOperation {
                 String str1 = urls.get(i).split(" = ", 2)[1];
                 mapFile.put(str, str1);
             }
-
         }
         return mapFile;
     }
