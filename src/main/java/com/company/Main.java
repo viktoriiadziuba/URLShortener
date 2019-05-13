@@ -15,7 +15,7 @@ public class Main {
         URLModification urlModification = new URLModification();
         Storage storage = new Storage("www.yourShortUrl.com/");
         String homeDirectory = System.getProperty("user.home");
-        FileOperation fileOperation = new FileOperation(new File(homeDirectory + "/URL.txt"));
+        FileOperation fileOperation = new FileOperation(new File(homeDirectory + "/URL.txt"), storage);
         Scanner sc = new Scanner(System.in);
         HashMap<String, String> mapUrls = fileOperation.readFromFile();
 

@@ -19,10 +19,10 @@ public class FileOperation {
     Storage storage;
     public static List<String> urls = Lists.newArrayList();
 
-    public FileOperation(File file) {
+    public FileOperation(File file, Storage storage) {
         this.file = file;
         readFromFile();
-        this.storage = new Storage("www.yourShortUrl.com/");
+        this.storage = storage;
     }
 
     public void fillFile () {

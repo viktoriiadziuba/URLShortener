@@ -7,7 +7,7 @@ import java.nio.charset.StandardCharsets;
 
 public class URLModification implements Encoder, Decoder {
 
-    FileOperation fileReader = new FileOperation(new File(System.getProperty("user.home") + "/URL.txt"));
+    FileOperation fileReader = new FileOperation(new File(System.getProperty("user.home") + "/URL.txt"), new Storage("www.yourShortUrl.com/"));
 
     @Override
     public String encode(String longUrl) {
