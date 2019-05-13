@@ -14,10 +14,6 @@ public class Storage implements Encoder {
        this.urlPrefix = urlPrefix;
    }
 
-   public Storage() {
-       this("www.yourShortUrl.com/");
-   }
-
     @Override
     public String encode(String longUrl) {
         String shortURL = Hashing.sha256().hashString(longUrl, StandardCharsets.UTF_8).toString();

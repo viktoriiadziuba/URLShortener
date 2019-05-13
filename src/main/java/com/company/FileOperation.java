@@ -16,12 +16,13 @@ import java.util.Map;
 public class FileOperation {
 
     private File file;
-    Storage storage = new Storage();
+    Storage storage;
     public static List<String> urls = Lists.newArrayList();
 
     public FileOperation(File file) {
         this.file = file;
         readFromFile();
+        this.storage = new Storage("www.yourShortUrl.com/");
     }
 
     public void fillFile () {
