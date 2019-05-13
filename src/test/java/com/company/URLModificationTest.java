@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 
 import static org.junit.Assert.*;
 
@@ -13,7 +14,8 @@ public class URLModificationTest {
 
     URLModification modification = new URLModification();
     String homeDirectory = System.getProperty("user.home");
-    FileOperation fileOperation = new FileOperation(new File(homeDirectory + "/URL.txt"));
+    FileOperation fileOperation = new FileOperation(new File(homeDirectory + "/URL.txt"), new Storage("www.yourShortUrl.com/"));
+    HashMap urls = fileOperation.readFromFile();
 
     @Test
     public void shouldEncode() {
@@ -28,13 +30,7 @@ public class URLModificationTest {
     @Test
     public void decode() {
         String shortUrl = "www.yourShortUrl.com/4a6abf377cd12cf0df0579c39dbff91b397d69f9a354c48e460dd85826246d1e";
-       String str = null;
-       for (int i = 0; i < fileOperation.urls.size(); i++) {
-           String s = fileOperation.urls.get(i).split(" = ", 2)[0];
-           if (shortUrl.equals(s)) {
-               str = fileOperation.urls.get(i).split(" = ", 2)[1];
-           }
-       }
+       String str = urls.get(shortUrl).toString();
 
         String str1 = modification.decode(shortUrl);
 

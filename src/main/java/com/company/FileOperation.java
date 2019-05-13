@@ -21,7 +21,6 @@ public class FileOperation {
 
     public FileOperation(File file, Storage storage) {
         this.file = file;
-        readFromFile();
         this.storage = storage;
     }
 
