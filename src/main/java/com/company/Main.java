@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.util.Scanner;
 
 public class Main {
 
@@ -14,7 +15,8 @@ public class Main {
         Storage storage = Storage.getInstance("www.yourShortUrl.com/");
         String homeDirectory = System.getProperty("user.home");
         FileOperation fileOperation = new FileOperation(new File(homeDirectory + "/URL.txt"), storage);
-        UserController userController = new UserController(log);
+        Scanner scan = new Scanner(System.in);
+        UserController userController = new UserController(log, scan);
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {

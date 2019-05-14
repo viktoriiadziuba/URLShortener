@@ -13,13 +13,14 @@ public class UserController {
     Storage storage = Storage.getInstance("www.yourShortUrl.com/");
     URLModification urlModification = new URLModification();
     String homeDirectory = System.getProperty("user.home");
-    Scanner sc = new Scanner(System.in);
     FileOperation fileOperation = new FileOperation(new File(homeDirectory + "/URL.txt"), storage);
     HashMap<String, String> mapUrls = fileOperation.readFromFile();
+    Scanner scan;
     Logger log;
 
-    public UserController(Logger log) {
+    public UserController(Logger log, Scanner scan) {
         this.log = log;
+        this.scan = scan;
     }
 
     public void start() {
@@ -31,11 +32,11 @@ public class UserController {
             log.info("Please enter your choice:");
 
             try {
-                int choice = sc.nextInt();
+                int choice = scan.nextInt();
                 switch (choice) {
                     case 1:
                         log.info("Enter your long URL:");
-                        String lUrl = sc.next();
+                        String lUrl = scan.next();
                         if (URLValidator.urlValidator(lUrl)) {
                             log.info("This is your short URL:");
                             if (mapUrls.containsValue(lUrl)) {
@@ -54,7 +55,7 @@ public class UserController {
 
                     case 2:
                         log.info("Enter you short URL");
-                        String sUrl = sc.next();
+                        String sUrl = scan.next();
                         log.info("This is your long URL:");
                         urlModification.decode(sUrl);
                         log.info(urlModification.decode(sUrl));
