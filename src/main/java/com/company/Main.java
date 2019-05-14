@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Storage storage = Storage.getInstance();
+        Storage storage = Storage.getInstance("www.yourShortUrl.com/");
         URLModification urlModification = new URLModification();
         String homeDirectory = System.getProperty("user.home");
         FileOperation fileOperation = new FileOperation(new File(homeDirectory + "/URL.txt"), storage);

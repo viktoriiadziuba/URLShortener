@@ -14,7 +14,7 @@ public class URLModificationTest {
 
     URLModification modification = new URLModification();
     String homeDirectory = System.getProperty("user.home");
-    FileOperation fileOperation = new FileOperation(new File(homeDirectory + "/URL.txt"), Storage.getInstance());
+    FileOperation fileOperation = new FileOperation(new File(homeDirectory + "/URL.txt"), Storage.getInstance("www.yourShortUrl.com/"));
     HashMap urls = fileOperation.readFromFile();
 
     @Test
