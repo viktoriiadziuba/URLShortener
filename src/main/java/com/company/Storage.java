@@ -15,7 +15,6 @@ public class Storage implements Encoder {
        this.urlPrefix = urlPrefix;
    }
 
-
     @Override
     public String encode(String longUrl) {
         String shortURL = Hashing.sha256().hashString(longUrl, StandardCharsets.UTF_8).toString();
@@ -31,8 +30,8 @@ public class Storage implements Encoder {
         return urlMap;
     }
 
-    public static Storage getInstance(String urlPrefix){
-       if (storage == null){
+    public static Storage getInstance(String urlPrefix) {
+       if (storage == null) {
            storage = new Storage(urlPrefix);
        }
        return storage;
