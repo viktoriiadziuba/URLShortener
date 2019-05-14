@@ -9,10 +9,10 @@ public class Storage implements Encoder {
 
     private String urlPrefix;
     public static HashMap<String, String> urlMap = new HashMap();
-    private static final Storage instanceStorage = new Storage("www.yourShortUrl.com/");
+    private static final Storage instanceStorage = new Storage();
 
-   private Storage(String urlPrefix) {
-       this.urlPrefix = urlPrefix;
+   private Storage() {
+       this.urlPrefix = "www.yourShortUrl.com/";
    }
 
 
