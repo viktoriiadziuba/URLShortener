@@ -9,10 +9,12 @@ public class Storage implements Encoder {
 
     private String urlPrefix;
     public static HashMap<String, String> urlMap = new HashMap();
+    private static final Storage instanceStorage = new Storage("www.yourShortUrl.com/");
 
-   public Storage(String urlPrefix) {
+   private Storage(String urlPrefix) {
        this.urlPrefix = urlPrefix;
    }
+
 
     @Override
     public String encode(String longUrl) {
@@ -27,5 +29,9 @@ public class Storage implements Encoder {
         urlMap.put(sb.toString()+" "," " + longUrl);
 
         return urlMap;
+    }
+
+    public static Storage getInstance(){
+       return instanceStorage;
     }
 }

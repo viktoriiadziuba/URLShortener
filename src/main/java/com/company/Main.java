@@ -12,8 +12,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        Storage storage = Storage.getInstance();
         URLModification urlModification = new URLModification();
-        Storage storage = new Storage("www.yourShortUrl.com/");
         String homeDirectory = System.getProperty("user.home");
         FileOperation fileOperation = new FileOperation(new File(homeDirectory + "/URL.txt"), storage);
         Scanner sc = new Scanner(System.in);
