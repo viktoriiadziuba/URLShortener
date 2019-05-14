@@ -7,14 +7,14 @@ import java.io.File;
 
 public class Main {
 
-    public static final Logger log = LoggerFactory.getLogger(Main.class);
+    private static final Logger log = LoggerFactory.getLogger(Main.class);
 
     public static void main(String[] args) {
 
         Storage storage = Storage.getInstance("www.yourShortUrl.com/");
         String homeDirectory = System.getProperty("user.home");
         FileOperation fileOperation = new FileOperation(new File(homeDirectory + "/URL.txt"), storage);
-        UserController userController = new UserController();
+        UserController userController = new UserController(log);
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             public void run() {

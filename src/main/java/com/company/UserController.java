@@ -1,11 +1,12 @@
 package com.company;
 
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import static com.company.Main.log;
+import org.slf4j.Logger;
 
 public class UserController {
 
@@ -15,6 +16,11 @@ public class UserController {
     Scanner sc = new Scanner(System.in);
     FileOperation fileOperation = new FileOperation(new File(homeDirectory + "/URL.txt"), storage);
     HashMap<String, String> mapUrls = fileOperation.readFromFile();
+    Logger log;
+
+    public UserController(Logger log) {
+        this.log = log;
+    }
 
     public void start() {
         while (true) {
