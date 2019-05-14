@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class StorageTest {
 
-    Storage storage = new Storage("www.yourShortUrl.com/");
+    Storage storage = Storage.getInstance("www.yourShortUrl.com/");
 
     @Test
     public void shouldFillMap() {

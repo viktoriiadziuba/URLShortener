@@ -25,7 +25,7 @@ public class FileOperation {
     }
 
     public void fillFile () {
-        Iterator i = storage.urlMap.entrySet().iterator();
+        Iterator i = Storage.getInstance("www.yourShortUrl.com/").urlMap.entrySet().iterator();
 
         while (i.hasNext()) {
             Map.Entry pairs = (Map.Entry) i.next();
