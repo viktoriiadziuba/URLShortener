@@ -1,18 +1,19 @@
 package com.company;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import org.slf4j.Logger;
+import redis.clients.jedis.JedisPool;
 
 public class UserController {
 
     Storage storage = Storage.getInstance("www.yourShortUrl.com/");
     URLModification urlModification = new URLModification();
-    String homeDirectory = System.getProperty("user.home");
-    File file = new File(homeDirectory + "/URL.txt");
-    DBOperation DBOperation = new DBOperation(storage);
+    private static final String redisHost = "localhost";
+    private static final Integer redisPort = 6379;
+    JedisPool pool = new JedisPool(redisHost, redisPort);
+    DBOperation DBOperation = new DBOperation(storage, pool);
     Scanner scan;
     Logger log;
 
