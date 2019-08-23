@@ -9,6 +9,7 @@ public class Storage implements Encoder {
 
     private String urlPrefix;
     public static HashMap<String, String> urlMap = new HashMap();
+    public static HashMap<String, String> secretKeys = new HashMap();
     private static Storage storage;
 
    private Storage(String urlPrefix) {
@@ -25,9 +26,14 @@ public class Storage implements Encoder {
     public HashMap<String, String> fillMap(String longUrl) {
         StringBuilder sb = new StringBuilder(urlPrefix);
         sb.append(encode(longUrl));
-        urlMap.put(sb.toString()+" "," " + longUrl);
+        urlMap.put(sb.toString(), longUrl);
 
         return urlMap;
+    }
+
+    public HashMap<String, String> fillKeys(String key, String longUrl) {
+       secretKeys.put(longUrl, key);
+       return secretKeys;
     }
 
     public static Storage getInstance(String urlPrefix) {

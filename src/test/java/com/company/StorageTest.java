@@ -26,4 +26,8 @@ public class StorageTest {
         Assert.assertEquals(urlMap1, urlMap2);
 
     }
+
+    @Test
+    public void shouldFillKeys() {
+    }
 }
