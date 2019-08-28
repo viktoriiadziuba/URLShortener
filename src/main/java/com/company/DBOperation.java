@@ -10,12 +10,12 @@ public class DBOperation {
 
     private static final String redisHost = "localhost";
     private static final Integer redisPort = 6379;
-    private static JedisPool pool = null;
+    private static JedisPool pool;
     Storage storage;
 
-    public DBOperation(Storage storage) {
+    public DBOperation(Storage storage, JedisPool pool) {
         this.storage = storage;
-        pool = new JedisPool(redisHost, redisPort);
+        this.pool = new JedisPool(redisHost, redisPort);
     }
 
     public void fillDB () {
